@@ -10,7 +10,11 @@ module Fastlane
         project = client.project(params[:project_id])
 
         UI.success 'Starting the upload to OneSky'
-        resp = project.upload_file(file: params[:strings_file_path], file_format: params[:strings_file_format])
+        resp = project.upload_file(
+          file: params[:strings_file_path], 
+          file_format: params[:strings_file_format], 
+          is_keeping_all_strings: !params[:deprecate_missing],
+        )
 
         if resp.code == 201
           UI.success "#{File.basename params[:strings_file_path]} was successfully uploaded to project #{params[:project_id]} in OneSky"
@@ -68,7 +72,13 @@ module Fastlane
                                        optional: false,
                                        verify_block: proc do |value|
                                          raise 'No file format given'.red unless (value and not value.empty?)
-                                       end)
+                                       end),
+          FastlaneCore::ConfigItem.new(key: :deprecate_missing,
+                                       env_name: 'ONESKY_DEPRECATE_MISSING',
+                                       description: 'Should missing phrases be marked as deprecated in OneSky?',
+                                       is_string: false,
+                                       optional: true,
+                                       default_value: false)
         ]
       end
 
