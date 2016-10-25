@@ -55,7 +55,7 @@ module Fastlane
                                        description: 'Project Id to upload file to',
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise 'No project id given'.red unless (value and not value.empty?)
+                                         raise "No project id given, pass using `project_id: 'id'`".red unless (value and not value.empty?)
                                        end),
           FastlaneCore::ConfigItem.new(key: :strings_file_path,
                                        env_name: 'ONESKY_STRINGS_FILE_PATH',
