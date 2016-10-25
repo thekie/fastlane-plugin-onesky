@@ -96,3 +96,10 @@ For more information about how the `fastlane` plugin system works, check out the
 ## About `fastlane`
 
 `fastlane` is the easiest way to automate building and releasing your iOS and Android apps. To learn more, check out [fastlane.tools](https://fastlane.tools).
+
+## Acknowledgements
+The code for the upload action is based on the fastlane plugin `upload_to_onesky` by @joshrlesch:
+https://github.com/joshrlesch/fastlane-plugin-upload_to_onesky
+
+
+This plugin was developed for and during the work on the [Youpooly iOS App](https://www.youpooly.com).
