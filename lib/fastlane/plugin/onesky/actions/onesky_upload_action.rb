@@ -29,7 +29,7 @@ module Fastlane
       end
 
       def self.authors
-        ['JMoravec', 'joshrlesch']
+        ['JMoravec', 'joshrlesch', 'danielkiedrowski']
       end
 
       def self.available_options
