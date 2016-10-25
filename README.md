@@ -89,7 +89,7 @@ Here are example lanes to use `fastlane-plugin-localization` and `fastlane-plugi
 
 ```Ruby
 desc "Extracts and uploads base localization to OneSky"
-  lane :onesky_upload do 
+  lane :export_translations do 
     export_localizations(
       destination_path: "./localizations",
       project: "YourApp.xcodeproj"
@@ -105,7 +105,7 @@ desc "Extracts and uploads base localization to OneSky"
   end
 
   desc "Downloads current translations from OneSky and imports into the xcode project"
-  lane :onesky_download do 
+  lane :download_translations do 
     onesky_download(
       public_key: "abc123abc123abc123abc123abc123abc",
       secret_key: "xyz890xyz890xyz890xyz890xyz890xyz",
