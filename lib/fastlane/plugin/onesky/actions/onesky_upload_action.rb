@@ -11,9 +11,9 @@ module Fastlane
 
         UI.success 'Starting the upload to OneSky'
         resp = project.upload_file(
-          file: params[:strings_file_path], 
-          file_format: params[:strings_file_format], 
-          is_keeping_all_strings: !params[:deprecate_missing],
+          file: params[:strings_file_path],
+          file_format: params[:strings_file_format],
+          is_keeping_all_strings: !params[:deprecate_missing]
         )
 
         if resp.code == 201
@@ -21,7 +21,6 @@ module Fastlane
         else
           UI.error "Error uploading file to OneSky, Status code is #{resp.code}"
         end
-
       end
 
       def self.description
@@ -40,7 +39,7 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No Public Key for OneSky given, pass using `public_key: 'token'`".red unless (value and not value.empty?)
+                                         raise "No Public Key for OneSky given, pass using `public_key: 'token'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :secret_key,
                                        env_name: 'ONESKY_SECRET_KEY',
@@ -48,14 +47,14 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No Secret Key for OneSky given, pass using `secret_key: 'token'`".red unless (value and not value.empty?)
+                                         raise "No Secret Key for OneSky given, pass using `secret_key: 'token'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :project_id,
                                        env_name: 'ONESKY_PROJECT_ID',
                                        description: 'Project Id to upload file to',
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No project id given, pass using `project_id: 'id'`".red unless (value and not value.empty?)
+                                         raise "No project id given, pass using `project_id: 'id'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :strings_file_path,
                                        env_name: 'ONESKY_STRINGS_FILE_PATH',
@@ -71,7 +70,7 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise 'No file format given'.red unless (value and not value.empty?)
+                                         raise 'No file format given'.red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :deprecate_missing,
                                        env_name: 'ONESKY_DEPRECATE_MISSING',

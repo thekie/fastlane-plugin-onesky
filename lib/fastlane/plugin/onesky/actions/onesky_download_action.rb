@@ -10,7 +10,7 @@ module Fastlane
 
         UI.success "Downloading translation '#{params[:locale]}' of file '#{params[:filename]}' from OneSky to: '#{params[:destination]}'"
         resp = project.export_translation(source_file_name: params[:filename], locale: params[:locale])
-        File.open(params[:destination], 'w') { |file| file.write(resp)}
+        File.open(params[:destination], 'w') { |file| file.write(resp) }
       end
 
       def self.description
@@ -29,7 +29,7 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No Public Key for OneSky given, pass using `public_key: 'token'`".red unless (value and not value.empty?)
+                                         raise "No Public Key for OneSky given, pass using `public_key: 'token'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :secret_key,
                                        env_name: 'ONESKY_SECRET_KEY',
@@ -37,14 +37,14 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No Secret Key for OneSky given, pass using `secret_key: 'token'`".red unless (value and not value.empty?)
+                                         raise "No Secret Key for OneSky given, pass using `secret_key: 'token'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :project_id,
                                        env_name: 'ONESKY_PROJECT_ID',
                                        description: 'Project Id to upload file to',
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No project id given, pass using `project_id: 'id'`".red unless (value and not value.empty?)
+                                         raise "No project id given, pass using `project_id: 'id'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :locale,
                                        env_name: 'ONESKY_DOWNLOAD_LOCALE',
@@ -52,7 +52,7 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise 'No locale for translation given'.red unless (value and not value.empty?)
+                                         raise 'No locale for translation given'.red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :filename,
                                        env_name: 'ONESKY_DOWNLOAD_FILENAME',
@@ -60,7 +60,7 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "No filename given. Please specify the filename of the file you want to download the translations for using `filename: 'filename'`".red unless (value and not value.empty?)
+                                         raise "No filename given. Please specify the filename of the file you want to download the translations for using `filename: 'filename'`".red unless value and !value.empty?
                                        end),
           FastlaneCore::ConfigItem.new(key: :destination,
                                        env_name: 'ONESKY_DOWNLOAD_DESTINATION',
@@ -68,7 +68,7 @@ module Fastlane
                                        is_string: true,
                                        optional: false,
                                        verify_block: proc do |value|
-                                         raise "Please specify the filename of the desrtination file you want to download the translations to using `destination: 'filename'`".red unless (value and not value.empty?)
+                                         raise "Please specify the filename of the desrtination file you want to download the translations to using `destination: 'filename'`".red unless value and !value.empty?
                                        end)
         ]
       end
