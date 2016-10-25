@@ -1,3 +1,0 @@
-lane :test do
-  onesky_upload
-end
