@@ -142,4 +142,4 @@ The code for the upload action is based on the fastlane plugin `upload_to_onesky
 https://github.com/joshrlesch/fastlane-plugin-upload_to_onesky
 
 
-This plugin was developed for and during the work on the [Youpooly iOS App](https://www.youpooly.com).
+This plugin was developed for and during the work on the [Youpooly iOS App](https://app.youpooly.com).
