@@ -1,4 +1,4 @@
-# onesky plugin
+# OneSky Fastlane Plugin
 
 [![fastlane Plugin Badge](https://rawcdn.githack.com/fastlane/fastlane/master/fastlane/assets/plugin-badge.svg)](https://rubygems.org/gems/fastlane-plugin-onesky)
 
@@ -10,17 +10,39 @@ This project is a [fastlane](https://github.com/fastlane/fastlane) plugin. To ge
 fastlane add_plugin onesky
 ```
 
-## About onesky
+## About
 
-Helps to update the translations of your app using the OneSky service.
+This fastlane plugin helps you to update the translations of your app using the OneSky service. You can upload your current base localization file with `onesky_upload` and download new translations with `onesky_download` from OneSky.
 
-**Note to author:** Add a more detailed description about this plugin here. If your plugin contains multiple actions, make sure to mention them here.
+OneSky is a translation service for to help ypu translate your iOS, Android, Websites and Software. TO find out more about the OneSky Service, please head over to http://www.oneskyapp.com.
 
-## Example
+## Reference and Example
 
-Check out the [example `Fastfile`](fastlane/Fastfile) to see how to use this plugin. Try it by cloning the repo, running `fastlane install_plugins` and `bundle exec fastlane test`. 
+The OneSky fastlane plugin provides two new actions: `onesky_upload` and `onesky_download`
 
-**Note to author:** Please set up a sample project to make it easy for users to explore what your plugin does. Provide everything that is necessary to try out the plugin in this project (including a sample Xcode/Android project if necessary)
+### `onesky_upload`
+
+Uploads a new translation file to the onesky service.
+
+````ruby
+onesky_upload(
+      public_key: "abc123abc123abc123abc123abc123abc",
+      secret_key: "xyz890xyz890xyz890xyz890xyz890xyz",
+      project_id: "1234",
+      strings_file_path: "./localizations/en.xliff",
+      strings_file_format: "XLIFF",
+      deprecate_missing: true
+    )
+````
+
+Parameter | Description
+--------- | -----------
+`public_key` | Your OneSky account public key. You retrive it by logging into your OneSky account, go to *Settings* and then *API Keys & Usages*.
+`private_key` | Your OneSky account private key. You retrive it by logging into your OneSky account, go to *Settings* and then *API Keys & Usages*.
+`project_id` | The ID of the project you want the tranlstions uploaded for. You retrive it, by logging into your OneSky account, navigate to your projects overview and copy the number behind the # in the brackets. (i.e. (#1234) -> `"1234"`)
+`strings_file_path` | The file path to the localization file you want to upload.
+`strings_file_format` | The format of localization file you want to upload. For more information about the available types head over to https://github.com/onesky/api-documentation-platform/blob/master/reference/format.md.
+`deprecate_missing` | *(optional)* Indicates whether the strings that aren't available in the new translation file should be marked as deprecated. Defaults to `false`.
 
 ## Run tests for this plugin
 
