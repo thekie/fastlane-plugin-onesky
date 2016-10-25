@@ -81,6 +81,46 @@ To automatically fix many of the styling issues, use
 rubocop -a
 ```
 
+## Goes well with `fastlane-plugin-localization`
+
+This plugin works really well with the plugin [localization](For more information see https://github.com/vmalyi/fastlane-plugin-localization) by [@vmalyi](https://github.com/vmalyi). `fastlane-plugin-localization` helps you to extract your localization files form your XCode Projects using `xcodebuild`.
+
+Here are example lanes to use `fastlane-plugin-localization` and `fastlane-plugin-onesky` to manage your translations:
+
+```Ruby
+desc "Extracts and uploads base localization to OneSky"
+  lane :onesky_upload do 
+    export_localizations(
+      destination_path: "./localizations",
+      project: "YourApp.xcodeproj"
+    )
+    onesky_upload(
+      public_key: "abc123abc123abc123abc123abc123abc",
+      secret_key: "xyz890xyz890xyz890xyz890xyz890xyz",
+      project_id: "1234",
+      strings_file_path: "./localizations/en.xliff",
+      strings_file_format: "XLIFF",
+      deprecate_missing: true
+    )
+  end
+
+  desc "Downloads current translations from OneSky and imports into the xcode project"
+  lane :onesky_download do 
+    onesky_download(
+      public_key: "abc123abc123abc123abc123abc123abc",
+      secret_key: "xyz890xyz890xyz890xyz890xyz890xyz",
+      project_id: "1234",
+      locale: "de",
+      filename: "en.xliff",
+      destination: "./localizations/de.xliff"
+    )
+    import_localizations(
+      source_path: "./localizations/de.xliff",
+      project: "YourApp.xcodeproj"
+    )
+  end
+```
+
 ## Issues and Feedback
 
 For any other issues and feedback about this plugin, please submit it to this repository.
