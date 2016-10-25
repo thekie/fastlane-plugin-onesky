@@ -10,14 +10,14 @@ Gem::Specification.new do |spec|
   spec.email         = %q{daniel@levire.com}
 
   spec.summary       = %q{Helps to update the translations of your app using the OneSky service.}
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-onesky"
+  spec.homepage      = "https://github.com/danielkiedrowski/fastlane-plugin-onesky"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  # spec.add_dependency 'your-dependency', '~> 1.0.0'
+  spec.add_dependency 'onesky-ruby'
 
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'bundler'
