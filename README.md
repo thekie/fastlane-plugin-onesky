@@ -83,7 +83,7 @@ rubocop -a
 
 ## Goes well with `fastlane-plugin-localization`
 
-This plugin works really well with the plugin [localization](For more information see https://github.com/vmalyi/fastlane-plugin-localization) by [@vmalyi](https://github.com/vmalyi). `fastlane-plugin-localization` helps you to extract your localization files form your XCode Projects using `xcodebuild`.
+This plugin works really well with the plugin [localization](https://github.com/vmalyi/fastlane-plugin-localization) by [@vmalyi](https://github.com/vmalyi). `fastlane-plugin-localization` helps you to extract your localization files form your XCode Projects using `xcodebuild`.
 
 Here are example lanes to use `fastlane-plugin-localization` and `fastlane-plugin-onesky` to manage your translations:
 
