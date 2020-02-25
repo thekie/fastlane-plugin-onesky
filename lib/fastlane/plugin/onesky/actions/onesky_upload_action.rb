@@ -13,6 +13,7 @@ module Fastlane
         resp = project.upload_file(
           file: params[:strings_file_path],
           file_format: params[:strings_file_format],
+          locale: params[:locale],
           is_keeping_all_strings: !params[:deprecate_missing]
         )
 
@@ -72,6 +73,12 @@ module Fastlane
                                        verify_block: proc do |value|
                                          raise 'No file format given'.red unless value and !value.empty?
                                        end),
+          FastlaneCore::ConfigItem.new(key: :locale,
+                                       env_name: "ONESKY_UPLOAD_LOCALE",
+                                       description: "Locale of the strings file",
+                                       is_string: true,
+                                       optional: true
+                                       ),
           FastlaneCore::ConfigItem.new(key: :deprecate_missing,
                                        env_name: 'ONESKY_DEPRECATE_MISSING',
                                        description: 'Should missing phrases be marked as deprecated in OneSky?',
